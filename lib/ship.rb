@@ -9,10 +9,10 @@ class Ship
   end
 
   def hit
-    @health = health - 1 unless health == 0
+    self.health -= 1 unless health.zero?
   end
 
   def sunk?
-    health == 0
+    health.zero?
   end
 end

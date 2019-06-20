@@ -15,7 +15,7 @@ RSpec.describe Ship do
     context "when boat's health is 0" do
       it "returns true" do
         expect(ship.sunk?).to eq (ship.health == 0)
-        3.times{ship.hit}
+        3.times { ship.hit }
         expect(ship.sunk?).to eq (ship.health == 0)
       end
     end
