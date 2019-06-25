@@ -40,7 +40,7 @@ class Cell
       end
      elsif empty?
        "M"
-     elsif ship.health > 0
+     elsif !ship.sunk?
        "H"
      else
        "X"
