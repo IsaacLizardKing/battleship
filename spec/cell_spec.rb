@@ -24,14 +24,6 @@ RSpec.describe Cell do
     end
   end
 
-  describe "#place_ship" do
-    it "takes a ship and puts it on the coordinate" do
-      expect(cell.ship).to be nil
-      cell.place_ship(ship)
-      expect(cell.ship).to eq ship
-    end
-  end
-
   describe "#fired_upon?" do
     context "when cell has not been hit" do
       it "returns false" do
@@ -63,6 +55,43 @@ RSpec.describe Cell do
         expect(cell.fired_upon?).to be false
         cell.fire_upon
         expect(cell.fired_upon?).to be true
+      end
+    end
+  end
+
+  describe "#place_ship" do
+    it "takes a ship and puts it on the coordinate" do
+      expect(cell.ship).to be nil
+      cell.place_ship(ship)
+      expect(cell.ship).to eq ship
+    end
+  end
+
+  describe "#render" do
+    context "when the cell has not been fired on" do
+      it "prints a ." do
+        expect(cell.render).to eq "."
+      end
+    end
+    context "when the cell has been fired on and it does not contain a ship" do
+      it "prints a M" do
+        cell.fire_upon
+        expect(cell.render).to eq "M"
+      end
+    end
+    context "when the cell has been fired on and it contains a ship" do
+      it "prints a H" do
+        cell.place_ship(ship)
+        cell.fire_upon
+        expect(cell.render).to eq "H"
+      end
+    end
+    context "when the cell has been fired on and its ship has been sunk" do
+      it "prints a X" do
+        cell.place_ship(ship)
+        cell.fire_upon
+        2.times { ship.hit }
+        expect(cell.render).to eq "X"
       end
     end
   end
