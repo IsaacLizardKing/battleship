@@ -30,4 +30,16 @@ class Cell
   def place_ship(ship)
     @ship = ship
   end
+
+  def render
+    if !fired_upon?
+      "."
+     elsif empty?
+       "M"
+     elsif ship.health > 0
+       "H"
+     else
+       "X"
+     end
+  end
 end
