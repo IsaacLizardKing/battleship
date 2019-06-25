@@ -79,6 +79,12 @@ RSpec.describe Cell do
         expect(cell.render).to eq "M"
       end
     end
+    context "when the cell has not been fired on and it does contain a ship" do
+      it "prints a S" do
+        cell.place_ship(ship)
+        expect(cell.render(true)).to eq "S"
+      end
+    end
     context "when the cell has been fired on and it contains a ship" do
       it "prints a H" do
         cell.place_ship(ship)

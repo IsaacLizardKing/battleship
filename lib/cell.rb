@@ -31,9 +31,13 @@ class Cell
     @ship = ship
   end
 
-  def render
+  def render(show_ship=false)
     if !fired_upon?
-      "."
+      if show_ship && !empty?
+        "S"
+      else
+        "."
+      end
      elsif empty?
        "M"
      elsif ship.health > 0
