@@ -1,10 +1,16 @@
-require "../lib/cell"
+require "./lib/cell"
 
 class Board
   attr_accessor :cells
 
   def initialize
     @cells = generate_board
+  end
+
+  def place(ship, coordinates)
+    if valid_placement?(ship, coordinates)
+      coordinates.each { |coordinate| cells[coordinate].place_ship(ship) }
+    end
   end
 
   def valid_coordinate?(coordinate)
