@@ -48,6 +48,13 @@ RSpec.describe Board do
   end
 
   describe "#valid_placement?" do
+    context "when there is a ship in the cell" do
+      it "returns false" do
+        expect(board.valid_placement?(ship_2, coordinates_1)).to be true
+        board.cells["A1"].place_ship(ship_2)
+        expect(board.valid_placement?(ship_2, coordinates_1)).to be false
+      end
+    end
     context "when array length does not match ship length" do
       it "returns false" do
         expect(board.valid_placement?(ship_1, coordinates_1)).to be false
