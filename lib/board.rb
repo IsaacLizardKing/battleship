@@ -1,4 +1,4 @@
-require "../lib/cell"
+require "./lib/cell"
 
 class Board
   attr_accessor :cells
@@ -7,12 +7,20 @@ class Board
     @cells = generate_board
   end
 
+  def place(ship, coordinates)
+    if valid_placement?(ship, coordinates)
+      coordinates.each { |coordinate| cells[coordinate].place_ship(ship) }
+    end
+  end
+
   def valid_coordinate?(coordinate)
     cells.keys.include?(coordinate)
   end
 
   def valid_placement?(ship, coordinates)
-    if ship.length != coordinates.length
+    if coordinates.detect { |coordinate| cells[coordinate].ship != nil }
+      false
+    elsif ship.length != coordinates.length
       false
     elsif !consecutive?(coordinates)
       false

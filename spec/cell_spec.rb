@@ -40,7 +40,7 @@ RSpec.describe Cell do
 
   describe "#fire_upon" do
     context "when there is a ship" do
-      it "reduces the ships health" do
+      it "reduce the ships health" do
         expect(ship.health).to eq 3
         expect(cell.fired_upon?).to be false
         cell.place_ship(ship)

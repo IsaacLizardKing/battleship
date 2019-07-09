@@ -1,4 +1,5 @@
-require "../lib/ship"
+require "./lib/ship"
+require "pry"
 
 class Cell
   attr_reader :coordinate,
@@ -28,7 +29,7 @@ class Cell
   end
 
   def place_ship(ship)
-    @ship = ship unless !ship.nil?
+    @ship = ship unless ship.nil?
   end
 
   def render(show_ship=false)
