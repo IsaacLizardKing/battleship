@@ -1,16 +1,25 @@
 require "./lib/cell"
-
+require "pry"
 class Board
-  attr_accessor :cells
+  attr_accessor :cells, :final_render
 
   def initialize
     @cells = generate_board
+    @final_render = initialize_render
   end
 
   def place(ship, coordinates)
     if valid_placement?(ship, coordinates)
       coordinates.each { |coordinate| cells[coordinate].place_ship(ship) }
     end
+  end
+
+  def render(show_ship=false)
+    cells.values.each do |cell|
+      final_render[cell.coordinate][0] = cell.render(show_ship)
+    end
+
+    final_render.values.join
   end
 
   def valid_coordinate?(coordinate)
@@ -48,8 +57,8 @@ private
   def generate_board
     { "A1" => Cell.new("A1"),
       "A2" => Cell.new("A2"),
-      "A3" => Cell.new("A1"),
-      "A4" => Cell.new("A1"),
+      "A3" => Cell.new("A3"),
+      "A4" => Cell.new("A4"),
       "B1" => Cell.new("B1"),
       "B2" => Cell.new("B2"),
       "B3" => Cell.new("B3"),
@@ -62,6 +71,32 @@ private
       "D2" => Cell.new("D2"),
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")
+    }
+  end
+
+  def initialize_render
+    {
+      "line_1" => "  1 2 3 4 \n",
+      "A"  => "A ",
+      "A1" => ". ",
+      "A2" => ". ",
+      "A3" => ". ",
+      "A4" => ". \n",
+      "B"  => "B ",
+      "B1" => ". ",
+      "B2" => ". ",
+      "B3" => ". ",
+      "B4" => ". \n",
+      "C"  => "C ",
+      "C1" => ". ",
+      "C2" => ". ",
+      "C3" => ". ",
+      "C4" => ". \n",
+      "D"  => "D ",
+      "D1" => ". ",
+      "D2" => ". ",
+      "D3" => ". ",
+      "D4" => ". \n",
     }
   end
 end

@@ -6,6 +6,41 @@ RSpec.describe Board do
   let(:ship_2) { Ship.new("Titanic", 2) }
   let(:coordinates_1) { ["A1", "A2"] }
   let(:coordinates_2) { ["A1", "A3", "B4"]}
+  let(:blank_board)     { "  1 2 3 4 \n" +
+                          "A . . . . \n" +
+                          "B . . . . \n" +
+                          "C . . . . \n" +
+                          "D . . . . \n"}
+  let(:ship_board)      { "  1 2 3 4 \n" +
+                          "A S S . . \n" +
+                          "B . . . . \n" +
+                          "C . . . . \n" +
+                          "D . . . . \n"}
+  let(:hit_board)       { "  1 2 3 4 \n" +
+                          "A H . . . \n" +
+                          "B . . . . \n" +
+                          "C . . . . \n" +
+                          "D . . . . \n"}
+  let(:miss_board)      { "  1 2 3 4 \n" +
+                          "A H . . . \n" +
+                          "B M . . . \n" +
+                          "C . . . . \n" +
+                          "D . . . . \n"}
+  let(:sunk_board)      { "  1 2 3 4 \n" +
+                          "A X X . . \n" +
+                          "B M . . . \n" +
+                          "C . . . . \n" +
+                          "D . . . . \n"}
+  let(:hit_board_ship)  { "  1 2 3 4 \n" +
+                          "A H S . . \n" +
+                          "B . . . . \n" +
+                          "C . . . . \n" +
+                          "D . . . . \n"}
+  let(:miss_board_ship) { "  1 2 3 4 \n" +
+                          "A H S . . \n" +
+                          "B M . . . \n" +
+                          "C . . . . \n" +
+                          "D . . . . \n"}
 
   describe "#initialize" do
     it "contains a hash of 16 cells" do
@@ -77,6 +112,35 @@ RSpec.describe Board do
       it "returns true" do
         expect(board.valid_placement?(ship_2, coordinates_1)).to be true
       end
+    end
+  end
+
+  describe "#render" do
+    context "when show_ships is false" do
+      it "prints misses, hits, and sunken ships" do
+        expect(board.render(false)).to eq blank_board
+        board.place(ship_2, coordinates_1)
+        expect(board.render(false)).to eq blank_board
+        board.cells["A1"].fire_upon
+        expect(board.render(false)).to eq hit_board
+        board.cells["B1"].fire_upon
+        expect(board.render(false)).to eq miss_board
+        board.cells["A2"].fire_upon
+        expect(board.render(false)).to eq sunk_board
+      end
+    end
+    context "when show_ships is true" do
+      it "prints ships, misses, hits, and sunken ships" do
+        expect(board.render(true)).to eq blank_board
+        board.place(ship_2, coordinates_1)
+        expect(board.render(true)).to eq ship_board
+        board.cells["A1"].fire_upon
+        expect(board.render(true)).to eq hit_board_ship
+        board.cells["B1"].fire_upon
+        expect(board.render(true)).to eq miss_board_ship
+        board.cells["A2"].fire_upon
+        expect(board.render(true)).to eq sunk_board
+       end
     end
   end
 end
