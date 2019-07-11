@@ -1,5 +1,5 @@
-require "./lib/board"
-require "pry"
+require './lib/board'
+
 class Game
   attr_accessor :computer_board, :player_board
 
