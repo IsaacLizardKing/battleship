@@ -5,7 +5,7 @@ RSpec.describe Board do
   let(:ship_1) { Ship.new("Boaty McBoatface", 3) }
   let(:ship_2) { Ship.new("Titanic", 2) }
   let(:coordinates_1) { ["A1", "A2"] }
-  let(:coordinates_2) { ["A1", "A3", "B4"]}
+  let(:coordinates_2) { ["A1", "A3", "B4"] }
   let(:blank_board)     { "  1 2 3 4 \n" +
                           "A . . . . \n" +
                           "B . . . . \n" +
@@ -118,7 +118,8 @@ RSpec.describe Board do
   describe "#render" do
     context "when show_ships is false" do
       it "prints misses, hits, and sunken ships" do
-        expect(board.render(false)).to eq blank_board
+        expect(board.render(false)).to eq q
+
         board.place(ship_2, coordinates_1)
         expect(board.render(false)).to eq blank_board
         board.cells["A1"].fire_upon
