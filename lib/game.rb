@@ -17,14 +17,16 @@ class Game
   def generate_computer_board
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
-    cruiser_coordinates = []
+    place_computer_ship(cruiser)
+    place_computer_ship(submarine)
+  end
+
+  def place_computer_ship(ship)
     loop do
-      3.times { cruiser_coordinates.push(computer_board.cells.keys.sample)}
-      binding.pry
-      if !computer_board.place(cruiser, ["A1", "A2", "A3"]).nil?
+      coordinates = computer_board.cells.keys.sample(ship.length)
+      if computer_board.place(ship, coordinates).nil?
         break
       end
     end
-
   end
 end
