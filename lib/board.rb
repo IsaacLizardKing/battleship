@@ -1,5 +1,5 @@
 require "./lib/cell"
-require "pry"
+
 class Board
   attr_accessor :cells, :final_render
 
