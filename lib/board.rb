@@ -18,7 +18,6 @@ class Board
     cells.values.each do |cell|
       final_render[cell.coordinate][0] = cell.render(show_ship)
     end
-
     final_render.values.join
   end
 
@@ -27,7 +26,9 @@ class Board
   end
 
   def valid_placement?(ship, coordinates)
-    if coordinates.detect { |coordinate| cells[coordinate].ship != nil }
+    if coordinates.detect { |coordinate| !valid_coordinate?(coordinate)}
+      false
+    elsif coordinates.detect { |coordinate| cells[coordinate].ship != nil }
       false
     elsif ship.length != coordinates.length
       false
