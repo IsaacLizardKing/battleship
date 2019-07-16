@@ -22,7 +22,7 @@ class Game
 
   def display_boards
     puts "==========CAPTAIN MACARONI'S BOARD=========="
-    puts computer_board.render
+    puts computer_board.render(true)
     puts "================PLAYER BOARD================"
     puts player_board.render(true)
   end
@@ -93,11 +93,11 @@ class Game
     end
     case player_board.cells[computer_coordinate].render
     when "M"
-      puts "Captain Macaroni's shot on #{player_coordinate} was a miss."
+      puts "Captain Macaroni's shot on #{computer_coordinate} was a miss."
     when "H"
-      puts "Captain Macaroni's shot on #{player_coordinate} was a hit!"
+      puts "Captain Macaroni's shot on #{computer_coordinate} was a hit!"
     when "X"
-      puts "Captain Macaroni's shot on #{player_coordinate} sunk your ship! :("
+      puts "Captain Macaroni's shot on #{computer_coordinate} sunk your ship! :("
     end
   end
 
@@ -106,7 +106,7 @@ class Game
       display_boards
       turn_player
       turn_computer
-      #results
+      results
       break if end_game?
     end
   end
@@ -115,7 +115,7 @@ class Game
     loop do
       self.computer_coordinate = player_board.cells.keys.sample
       if player_board.valid_coordinate?(computer_coordinate) &&
-         !computer_board.cells[player_coordinate].fired_upon?
+         !player_board.cells[computer_coordinate].fired_upon?
         player_board.cells[computer_coordinate].fire_upon
         break
       end
@@ -123,19 +123,16 @@ class Game
   end
 
   def turn_player
+    puts "Enter the coordinate for your shot:"
     loop do
-      puts "Enter the coordinate for your shot:"
       self.player_coordinate = gets.chomp.upcase
       if !computer_board.valid_coordinate?(player_coordinate)
         puts "Please enter a valid coordinate:"
+      elsif !computer_board.cells[player_coordinate].fired_upon?
+        computer_board.cells[player_coordinate].fire_upon
         break
       else
-        if computer_board.cells[player_coordinate].fired_upon?
-           computer_board.cells[player_coordinate].fire_upon
-        else
-          puts "This cell has already been fired upon. Try again:"
-          break
-        end
+        puts "This cell has already been fired upon. Try again:"
       end
     end
   end

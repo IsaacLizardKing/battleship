@@ -32,10 +32,8 @@ class Board
       false
     elsif ship.length != coordinates.length
       false
-    elsif !consecutive?(coordinates)
-      false
     else
-      true
+      consecutive?(coordinates)
     end
   end
 
@@ -52,6 +50,8 @@ private
     elsif coordinates.all? { |coordinate| coordinate[1] == coordinates[0][1] }
       range = (coordinates[0][0]..coordinates[-1][0]).to_a
       range.size == coordinates.size
+    else
+      false
     end
   end
 

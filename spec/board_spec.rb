@@ -118,7 +118,7 @@ RSpec.describe Board do
   describe "#render" do
     context "when show_ships is false" do
       it "prints misses, hits, and sunken ships" do
-        expect(board.render(false)).to eq q
+        expect(board.render(false)).to eq blank_board
 
         board.place(ship_2, coordinates_1)
         expect(board.render(false)).to eq blank_board
