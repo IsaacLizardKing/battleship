@@ -33,7 +33,7 @@ class Board
     elsif ship.length != coordinates.length
       false
     else
-      consecutive?(coordinates)
+      consecutive?(coordinates.sort)
     end
   end
 
