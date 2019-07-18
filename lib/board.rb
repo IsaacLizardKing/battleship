@@ -1,5 +1,5 @@
 require "./lib/cell"
-require "pry"
+
 class Board
   attr_accessor :cells, :final_render
 
@@ -14,31 +14,30 @@ class Board
     end
   end
 
-  def render(show_ship=false)
+  def render(show_ship = false)
     cells.values.each do |cell|
       final_render[cell.coordinate][0] = cell.render(show_ship)
     end
-
     final_render.values.join
   end
 
   def valid_coordinate?(coordinate)
-    cells.keys.include?(coordinate)
+    cells.key?(coordinate)
   end
 
   def valid_placement?(ship, coordinates)
-    if coordinates.detect { |coordinate| cells[coordinate].ship != nil }
+    if coordinates.detect { |coordinate| !valid_coordinate?(coordinate) }
+      false
+    elsif coordinates.detect { |coordinate| !cells[coordinate].ship.nil? }
       false
     elsif ship.length != coordinates.length
       false
-    elsif !consecutive?(coordinates)
-      false
     else
-      true
+      consecutive?(coordinates.sort)
     end
   end
 
-private
+  private
 
   def consecutive?(coordinates)
     if coordinates.length > 4
@@ -51,6 +50,8 @@ private
     elsif coordinates.all? { |coordinate| coordinate[1] == coordinates[0][1] }
       range = (coordinates[0][0]..coordinates[-1][0]).to_a
       range.size == coordinates.size
+    else
+      false
     end
   end
 
@@ -70,33 +71,30 @@ private
       "D1" => Cell.new("D1"),
       "D2" => Cell.new("D2"),
       "D3" => Cell.new("D3"),
-      "D4" => Cell.new("D4")
-    }
+      "D4" => Cell.new("D4") }
   end
 
   def initialize_render
-    {
-      "line_1" => "  1 2 3 4 \n",
-      "A"  => "A ",
+    { "line_1" => "  1 2 3 4 \n",
+      "A" => "A ",
       "A1" => ". ",
       "A2" => ". ",
       "A3" => ". ",
       "A4" => ". \n",
-      "B"  => "B ",
+      "B" => "B ",
       "B1" => ". ",
       "B2" => ". ",
       "B3" => ". ",
       "B4" => ". \n",
-      "C"  => "C ",
+      "C" => "C ",
       "C1" => ". ",
       "C2" => ". ",
       "C3" => ". ",
       "C4" => ". \n",
-      "D"  => "D ",
+      "D" => "D ",
       "D1" => ". ",
       "D2" => ". ",
       "D3" => ". ",
-      "D4" => ". \n",
-    }
+      "D4" => ". \n" }
   end
 end

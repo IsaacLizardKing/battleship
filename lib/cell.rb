@@ -31,19 +31,20 @@ class Cell
     @ship = ship unless ship.nil?
   end
 
-  def render(show_ship=false)
+  def render(show_ship = false)
     if !fired_upon?
-      if show_ship && !empty?
+      case show_ship && !empty?
+      when true
         "S"
-      else
+      when false
         "."
       end
-     elsif empty?
-       "M"
-     elsif !ship.sunk?
-       "H"
-     else
-       "X"
-     end
+    elsif empty?
+      "M"
+    elsif !ship.sunk?
+      "H"
+    else
+      "X"
+    end
   end
 end
