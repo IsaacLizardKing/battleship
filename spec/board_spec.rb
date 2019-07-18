@@ -12,7 +12,7 @@ RSpec.describe Board do
     "A . . . . \n" +
     "B . . . . \n" +
     "C . . . . \n" +
-    "D . . . . "
+    "D . . . . " 
   }
 
   let(:ship_board)

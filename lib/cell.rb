@@ -33,9 +33,10 @@ class Cell
 
   def render(show_ship = false)
     if !fired_upon?
-      if show_ship && !empty?
+      case show_ship && !empty?
+      when true
         "S"
-      else
+      when false
         "."
       end
     elsif empty?
