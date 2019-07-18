@@ -17,7 +17,6 @@ class Game
     @computer_submarine = Ship.new("Submarine", 2)
     @player_cruiser = Ship.new("Cruiser", 3)
     @player_submarine = Ship.new("Submarine", 2)
-    play
   end
 
   def display_boards
@@ -66,7 +65,7 @@ class Game
 
   def place_player_ships(ship)
     loop do
-      coordinates = gets.chomp.upcase.split(" ")
+      coordinates = STDIN.gets.chomp.upcase.split(" ")
       if !player_board.place(ship, coordinates).nil?
         break
       else
@@ -125,7 +124,7 @@ class Game
   def turn_player
     puts "Enter the coordinate for your shot:"
     loop do
-      self.player_coordinate = gets.chomp.upcase
+      self.player_coordinate = STDIN.gets.chomp.upcase
       if !computer_board.valid_coordinate?(player_coordinate)
         puts "Please enter a valid coordinate:"
       elsif !computer_board.cells[player_coordinate].fired_upon?

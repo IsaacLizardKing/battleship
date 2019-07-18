@@ -13,6 +13,10 @@ RSpec.describe Game do
     it "creates computer and player boards, cruisers, and submarines" do
       expect(game.computer_board).to be_instance_of Board
       expect(game.player_board).to be_instance_of Board
+      expect(game.computer_cruiser).to be_instance_of Ship
+      expect(game.player_cruiser).to be_instance_of Ship
+      expect(game.computer_submarine).to be_instance_of Ship
+      expect(game.player_submarine).to be_instance_of Ship
     end
   end
 end

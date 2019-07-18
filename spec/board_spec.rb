@@ -6,74 +6,67 @@ RSpec.describe Board do
   let(:ship_2) { Ship.new("Titanic", 2) }
   let(:coordinates_1) { ["A1", "A2"] }
   let(:coordinates_2) { ["A1", "A3", "B4"] }
-  let(:blank_board)
-  {
+  let(:blank_board) do
     "  1 2 3 4 \n" +
-    "A . . . . \n" +
-    "B . . . . \n" +
-    "C . . . . \n" +
-    "D . . . . " 
-  }
+      "A . . . . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+  end
 
-  let(:ship_board)
-  {
+  let(:ship_board) do
     "  1 2 3 4 \n" +
-    "A S S . . \n" +
-    "B . . . . \n" +
-    "C . . . . \n" +
-    "D . . . . "
-  }
+      "A S S . . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+  end
 
-  let(:hit_board)
-  {
+  let(:hit_board) do
     "  1 2 3 4 \n" +
-    "A H . . . \n" +
-    "B . . . . \n" +
-    "C . . . . \n" +
-    "D . . . . "
-  }
+      "A H . . . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+  end
 
-  let(:miss_board)
-  {
+  let(:miss_board) do
     "  1 2 3 4 \n" +
-    "A H . . . \n" +
-    "B M . . . \n" +
-    "C . . . . \n" +
-    "D . . . . "
-  }
+      "A H . . . \n" +
+      "B M . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+  end
 
-  let(:sunk_board)
-  {
+  let(:sunk_board) do
     "  1 2 3 4 \n" +
-    "A X X . . \n" +
-    "B M . . . \n" +
-    "C . . . . \n" +
-    "D . . . . "
-  }
+      "A X X . . \n" +
+      "B M . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+  end
 
-  let(:hit_board_ship)
-  {
+  let(:hit_board_ship) do
     "  1 2 3 4 \n" +
-    "A H S . . \n" +
-    "B . . . . \n" +
-    "C . . . . \n" +
-    "D . . . . "
-  }
+      "A H S . . \n" +
+      "B . . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+  end
 
-  let(:miss_board_ship)
-  {
+  let(:miss_board_ship) do
     "  1 2 3 4 \n" +
-    "A H S . . \n" +
-    "B M . . . \n" +
-    "C . . . . \n" +
-    "D . . . . "
-  }
+      "A H S . . \n" +
+      "B M . . . \n" +
+      "C . . . . \n" +
+      "D . . . . \n"
+  end
 
   describe "#initialize" do
     it "contains a hash of 16 cells" do
       expect(board.cells).to be_kind_of Hash
       expect(board.cells.count).to eq 16
-      board.cells.values.all? { |cell| expect(cell).to be_instance_of Cell}
+      board.cells.values.all? { |cell| expect(cell).to be_instance_of Cell }
     end
   end
 
@@ -168,7 +161,7 @@ RSpec.describe Board do
         expect(board.render(true)).to eq miss_board_ship
         board.cells["A2"].fire_upon
         expect(board.render(true)).to eq sunk_board
-       end
+      end
     end
   end
 end
