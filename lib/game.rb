@@ -1,5 +1,5 @@
-require './lib/board'
-require 'pry'
+require "./lib/board"
+
 class Game
   attr_accessor :computer_board,
                 :computer_coordinate,
@@ -97,7 +97,7 @@ class Game
     when "H"
       puts "Captain Macaroni's shot on #{computer_coordinate} was a hit!"
     when "X"
-      puts "Captain Macaroni's shot on #{computer_coordinate} sunk your ship! :("
+      puts "Captain Macaroni's shot on #{computer_coordinate} sunk your ship!:("
     end
   end
 
@@ -115,7 +115,7 @@ class Game
     loop do
       self.computer_coordinate = player_board.cells.keys.sample
       if player_board.valid_coordinate?(computer_coordinate) &&
-         !player_board.cells[computer_coordinate].fired_upon?
+          !player_board.cells[computer_coordinate].fired_upon?
         player_board.cells[computer_coordinate].fire_upon
         break
       end

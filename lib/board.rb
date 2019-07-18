@@ -1,4 +1,4 @@
-require './lib/cell'
+require "./lib/cell"
 
 class Board
   attr_accessor :cells, :final_render
@@ -22,13 +22,13 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
-    cells.keys.include?(coordinate)
+    cells.key?(coordinate)
   end
 
   def valid_placement?(ship, coordinates)
-    if coordinates.detect { |coordinate| !valid_coordinate?(coordinate)}
+    if coordinates.detect { |coordinate| !valid_coordinate?(coordinate) }
       false
-    elsif coordinates.detect { |coordinate| cells[coordinate].ship != nil }
+    elsif coordinates.detect { |coordinate| !cells[coordinate].ship.nil? }
       false
     elsif ship.length != coordinates.length
       false
@@ -37,7 +37,7 @@ class Board
     end
   end
 
-private
+  private
 
   def consecutive?(coordinates)
     if coordinates.length > 4
@@ -71,8 +71,7 @@ private
       "D1" => Cell.new("D1"),
       "D2" => Cell.new("D2"),
       "D3" => Cell.new("D3"),
-      "D4" => Cell.new("D4"),
-    }
+      "D4" => Cell.new("D4"), }
   end
 
   def initialize_render

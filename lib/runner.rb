@@ -1,4 +1,4 @@
-require './lib/game'
+require "./lib/game"
 puts "Welcome to BATTLESHIP!"
 loop do
   puts "Enter p to play. Enter q to quit."

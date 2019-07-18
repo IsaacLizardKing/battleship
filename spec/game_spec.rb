@@ -1,4 +1,5 @@
-require './lib/game'
+require "./lib/game"
+
 RSpec.describe Game do
   let (:game) { Game.new }
   let (:computer_board) { Board.new }
