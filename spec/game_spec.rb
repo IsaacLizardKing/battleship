@@ -15,5 +15,4 @@ RSpec.describe Game do
       expect(game.player_board).to be_instance_of Board
     end
   end
-
 end

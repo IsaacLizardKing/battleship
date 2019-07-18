@@ -6,47 +6,68 @@ RSpec.describe Board do
   let(:ship_2) { Ship.new("Titanic", 2) }
   let(:coordinates_1) { ["A1", "A2"] }
   let(:coordinates_2) { ["A1", "A3", "B4"] }
-  let(:blank_board) { "  1 2 3 4 \n" +
-                      "A . . . . \n" +
-                      "B . . . . \n" +
-                      "C . . . . \n" +
-                      "D . . . . \n"
-                    }
-  let(:ship_board)      { "  1 2 3 4 \n" +
-                          "A S S . . \n" +
-                          "B . . . . \n" +
-                          "C . . . . \n" +
-                          "D . . . . \n"
-                        }
-  let(:hit_board)       { "  1 2 3 4 \n" +
-                          "A H . . . \n" +
-                          "B . . . . \n" +
-                          "C . . . . \n" +
-                          "D . . . . \n"}
+  let(:blank_board)
+  {
+    "  1 2 3 4 \n" +
+    "A . . . . \n" +
+    "B . . . . \n" +
+    "C . . . . \n" +
+    "D . . . . "
+  }
 
-  let(:miss_board)      { "  1 2 3 4 \n" +
-                          "A H . . . \n" +
-                          "B M . . . \n" +
-                          "C . . . . \n" +
-                          "D . . . . \n"
-                        }
-  let(:sunk_board)      { "  1 2 3 4 \n" +
-                          "A X X . . \n" +
-                          "B M . . . \n" +
-                          "C . . . . \n" +
-                          "D . . . . \n"}
+  let(:ship_board)
+  {
+    "  1 2 3 4 \n" +
+    "A S S . . \n" +
+    "B . . . . \n" +
+    "C . . . . \n" +
+    "D . . . . "
+  }
 
-  let(:hit_board_ship)  { "  1 2 3 4 \n" +
-                          "A H S . . \n" +
-                          "B . . . . \n" +
-                          "C . . . . \n" +
-                          "D . . . . \n"}
-  let(:miss_board_ship) { "  1 2 3 4 \n" +
-                          "A H S . . \n" +
-                          "B M . . . \n" +
-                          "C . . . . \n" +
-                          "D . . . . \n"
-                        }
+  let(:hit_board)
+  {
+    "  1 2 3 4 \n" +
+    "A H . . . \n" +
+    "B . . . . \n" +
+    "C . . . . \n" +
+    "D . . . . "
+  }
+
+  let(:miss_board)
+  {
+    "  1 2 3 4 \n" +
+    "A H . . . \n" +
+    "B M . . . \n" +
+    "C . . . . \n" +
+    "D . . . . "
+  }
+
+  let(:sunk_board)
+  {
+    "  1 2 3 4 \n" +
+    "A X X . . \n" +
+    "B M . . . \n" +
+    "C . . . . \n" +
+    "D . . . . "
+  }
+
+  let(:hit_board_ship)
+  {
+    "  1 2 3 4 \n" +
+    "A H S . . \n" +
+    "B . . . . \n" +
+    "C . . . . \n" +
+    "D . . . . "
+  }
+
+  let(:miss_board_ship)
+  {
+    "  1 2 3 4 \n" +
+    "A H S . . \n" +
+    "B M . . . \n" +
+    "C . . . . \n" +
+    "D . . . . "
+  }
 
   describe "#initialize" do
     it "contains a hash of 16 cells" do
