@@ -15,8 +15,8 @@ class Game
     @player_board = Board.new
     @computer_cruiser = Ship.new("Cruiser", 3)
     @computer_submarine = Ship.new("Submarine", 2)
-    @player_cruiser = Ship.new("Cruiser", 3)
-    @player_submarine = Ship.new("Submarine", 2)
+    #@player_cruiser = Ship.new("Cruiser", 3)
+    #@player_submarine = Ship.new("Submarine", 2)
   end
 
   def display_boards
@@ -54,6 +54,14 @@ class Game
     place_player_ships(player_submarine)
   end
 
+  def generate_player_ships
+    puts "You need to create your ships."
+    loop do
+    puts "The Cruiser is two units long and the Submarine is three units long."
+    puts player_board.render(true)
+    end
+  end
+
   def place_computer_ship(ship)
     loop do
       coordinates = computer_board.cells.keys.sample(ship.length)
@@ -76,6 +84,7 @@ class Game
   end
 
   def play
+    generate_player_ships
     generate_computer_board
     generate_player_board
     take_turn
