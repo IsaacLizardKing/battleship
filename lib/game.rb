@@ -53,7 +53,7 @@ class Game
     puts "Enter the squares for the Submarine (2 spaces)"
     place_player_ships(player_submarine)
   end
-
+#test
   def generate_player_ships
     puts "You need to create your ships."
     loop do
