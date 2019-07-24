@@ -17,23 +17,23 @@ RSpec.describe IntelligentComputer do
   describe "#find_coordinates" do
     context "when there are no hits on the board" do
       it "returns nil" do
-        expect(smarty_pants.find_coordinates).to be nil
+        expect(smarty_pants.find_coordinates).to eq []
         board.cells["B1"].fire_upon
-        expect(smarty_pants.find_coordinates).to be nil
+        expect(smarty_pants.find_coordinates).to eq []
         board.cells["A1"].fire_upon
         board.cells["A2"].fire_upon
         board.cells["A3"].fire_upon
-        expect(smarty_pants.find_coordinates).to be nil
+        expect(smarty_pants.find_coordinates).to eq []
       end
     end
     context "when there are hits on the board" do
       it "returns coordinates" do
         board.cells["A1"].fire_upon
-        expect(smarty_pants.find_coordinates).to be ["A2", "B1"]
+        expect(smarty_pants.find_coordinates).to eq ["A2", "B1"]
         board.cells["B1"].fire_upon
-        expect(smarty_pants.find_coordinates).to be ["A2"]
+        expect(smarty_pants.find_coordinates).to eq ["A2"]
         board.cells["A2"].fire_upon
-        expect(smarty_pants.find_coordinates).to be ["A3", "B2"]
+        expect(smarty_pants.find_coordinates).to eq ["A3", "B2"]
       end
     end
   end

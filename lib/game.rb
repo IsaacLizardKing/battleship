@@ -30,7 +30,7 @@ class Game
       puts "\n================GAME OVER================="
       puts "You won! :)"
       true
-    elsif player_ships.all? { |ship| ship.sunk? }
+    elsif player_ships.all?(&:sunk?)
       puts "\n================GAME OVER================="
       puts "Captain Macaroni won. :("
       true
@@ -41,12 +41,12 @@ class Game
 
   def get_ship_info
     puts "Ship name?"
-    name = gets.chomp.capitalize
+    name = STDIN.gets.chomp.capitalize
     puts "Ship length?"
     length = 0
     loop do
-      length = gets.chomp.to_i
-      if length < 5 && length > 0
+      length = STDIN.gets.chomp.to_i
+      if length.between?(1, 4)
         break
       else
         puts "Please enter a ship length less than 4."
@@ -75,12 +75,12 @@ class Game
   def generate_player_ships
     setup = true
     puts "You need to create your ships."
-    while setup  do
+    while setup
       ship = get_ship_info
-      self.player_ships.push(Ship.new(ship[0], ship[1]))
+      player_ships.push(Ship.new(ship[0], ship[1]))
       puts "Ship added. Would you like to create another? (y/n)"
       loop do
-        answer = gets.chomp
+        answer = STDIN.gets.chomp
         case answer.downcase
         when "n"
           setup = false
