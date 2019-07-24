@@ -6,7 +6,6 @@ loop do
   case answer
   when "P"
     Game.new
-    Game.play
   when "Q"
     break
   else
