@@ -1,4 +1,8 @@
+require "./lib/board"
 class IntelligentComputer
-  def initialze
+  attr_reader :board
+
+  def initialize(board)
+    @board = board
   end
 end
