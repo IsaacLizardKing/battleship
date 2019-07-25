@@ -7,11 +7,13 @@ class IntelligentComputer
   def initialize(board)
     @board = board
     @coordinates = []
+    find_coordinates
   end
 
   def find_coordinates
+    coordinates.clear
     board.cells.values.each do |cell|
-      if cell.hit? && !cell.ship.sunk?
+      if cell.hit?
         letter = cell.coordinate[0]
         number = cell.coordinate[1].to_i
         if (letter.ord - 1).between?(65, 68)
@@ -36,7 +38,7 @@ class IntelligentComputer
   end
 
   def push_coordinates(new_coordinate)
-    if !board.cells[new_coordinate].hit?
+    if !board.cells[new_coordinate].fired_upon?
       coordinates.push(new_coordinate)
     end
   end

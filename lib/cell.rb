@@ -28,7 +28,7 @@ class Cell
   end
 
   def hit?
-    !empty? && fired_upon?
+    !empty? && fired_upon? && !ship.sunk?
   end
 
   def place_ship(ship)

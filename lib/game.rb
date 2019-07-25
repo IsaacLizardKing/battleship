@@ -1,4 +1,5 @@
 require "./lib/board"
+require "./lib/intelligent_computer"
 
 class Game
   attr_accessor :computer_board,
@@ -112,7 +113,6 @@ class Game
         puts "Those are invalid coordinates. Please try again:"
       end
     end
-    puts player_board.render(true)
   end
 
   def play
@@ -153,7 +153,13 @@ class Game
 
   def turn_computer
     loop do
-      self.computer_coordinate = player_board.cells.keys.sample
+      computer = IntelligentComputer.new(player_board)
+      if computer.coordinates.empty?
+        self.computer_coordinate = player_board.cells.keys.sample
+      elsif
+        self.computer_coordinate = computer.coordinates.sample
+      end
+
       if player_board.valid_coordinate?(computer_coordinate) &&
           !player_board.cells[computer_coordinate].fired_upon?
         player_board.cells[computer_coordinate].fire_upon
