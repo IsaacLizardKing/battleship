@@ -27,6 +27,10 @@ class Cell
     self.fired_upon = true
   end
 
+  def hit?
+    !empty? && fired_upon? && !ship.sunk?
+  end
+
   def place_ship(ship)
     @ship = ship unless ship.nil?
   end
