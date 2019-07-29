@@ -5,7 +5,8 @@ loop do
   answer = gets.chomp!.upcase
   case answer
   when "P"
-    Game.new
+    game = Game.new
+    game.play
   when "Q"
     break
   else
