@@ -16,7 +16,6 @@ class Game
     @computer_cruiser = Ship.new("Cruiser", 3)
     @computer_submarine = Ship.new("Submarine", 2)
     @player_ships = []
-    play
   end
 
   def display_boards
